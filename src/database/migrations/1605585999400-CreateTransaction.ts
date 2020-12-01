@@ -4,7 +4,7 @@ export class CreateTransaction1605585999400 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.createTable(new Table({
-      name: 'category',
+      name: 'categories',
       columns: [
         {
           name: 'id',
@@ -32,7 +32,7 @@ export class CreateTransaction1605585999400 implements MigrationInterface {
     }));
 
     await queryRunner.createTable(new Table({
-      name: 'transaction',
+      name: 'transactions',
       columns: [
         {
           name: 'id',
@@ -75,21 +75,21 @@ export class CreateTransaction1605585999400 implements MigrationInterface {
       ]
     }));
 
-    await queryRunner.createForeignKey('transaction', new TableForeignKey({
+    await queryRunner.createForeignKey('transactions', new TableForeignKey({
       name: 'CategoryTransaction',
       columnNames: ['category_id'],
       referencedColumnNames: ['id'],
-      referencedTableName: 'category',
+      referencedTableName: 'categories',
       onDelete: 'SET NULL',
       onUpdate: 'CASCADE'
     }));
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.dropForeignKey('transaction', 'CategoryTransaction');
+    await queryRunner.dropForeignKey('transactions', 'CategoryTransaction');
 
-    await queryRunner.dropTable('transaction');
+    await queryRunner.dropTable('transactions');
 
-    await queryRunner.dropTable('category');
+    await queryRunner.dropTable('categories');
   }
 }

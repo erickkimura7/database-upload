@@ -20,7 +20,7 @@ class CreateTransactionService {
 
     if (type === 'outcome' && total - value < 0) {
       console.log(`App error ${total - value}`)
-      throw new AppError('Valor não pode ser inserido, por causa da contabilidade.', 422);
+      throw new AppError('Valor não pode ser inserido, por causa da contabilidade.', 400);
     }
 
     let categoryEntity = await categoryRepository.findOne({ title: category });
