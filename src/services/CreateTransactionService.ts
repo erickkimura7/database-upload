@@ -32,6 +32,7 @@ class CreateTransactionService {
 
     const transactionEntity = transactionRepository.create({ title, value, type, category_id: categoryEntity.id });
 
+    transactionEntity.category = categoryEntity;
     await transactionRepository.save(transactionEntity);
 
     return transactionEntity;

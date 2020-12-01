@@ -12,8 +12,8 @@ interface Balance {
 class TransactionsRepository extends Repository<Transaction> {
   public async getBalance(): Promise<Balance> {
 
-    const income = await this.getSumType('income');
-    const outcome = await this.getSumType('outcome');
+    const income: number = +await this.getSumType('income');
+    const outcome: number = +await this.getSumType('outcome');
 
     return {
       income,
